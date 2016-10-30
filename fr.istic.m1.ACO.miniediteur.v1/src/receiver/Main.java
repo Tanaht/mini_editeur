@@ -1,6 +1,5 @@
 package receiver;
 
-import java.util.Scanner;
 
 public class Main {
 	

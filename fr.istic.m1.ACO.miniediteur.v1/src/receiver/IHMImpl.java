@@ -1,8 +1,6 @@
 package receiver;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class IHMImpl implements IHM {
 	
@@ -110,8 +108,15 @@ public class IHMImpl implements IHM {
 				sc2.close(); 
 				return false;
 			case "::select":
-				sel[0] = sc2.nextInt();
-				sel[1] = sc2.nextInt();
+				if(sc2.hasNextInt()) {
+					int sel1 = sc2.nextInt();
+					
+					if(sc2.hasNextInt()) {
+						sel[0] = sel1;
+						sel[1] = sc2.nextInt();
+						eventSelectionner();
+					}
+				}
 				this.selectionner.execute();
 				break;
 			default : 

@@ -3,14 +3,12 @@ package receiver;
 
 public class Moteur implements Receiver {
 	private String buffer;
-	private int[] selection;
+	private Selection selection;
 	private String clipboard;
 	
 	public Moteur() {
+		this.selection = new Selection();
 		this.buffer = "";
-		this.selection = new int[2];
-		this.selection[0] = 0;
-		this.selection[1] = 0;
 	}
 	
 	/**
@@ -18,23 +16,23 @@ public class Moteur implements Receiver {
 	 */
 	@Override
 	public void copier() {
-		this.clipboard = this.buffer.substring(selection[0], selection[1]+1);
+		this.clipboard = this.selection.getSelectedText(buffer);
 	}
 
 	/**
 	 */
 	@Override
 	public void couper() {
-		this.clipboard = this.buffer.substring(selection[0], selection[1]+1);
-		this.buffer = this.buffer.substring(0, this.selection[0]) + this.buffer.substring(this.selection[1]+1);
-		
-		this.selection[1] = this.selection[0];
+		this.clipboard = this.selection.getSelectedText(buffer);
+		this.buffer = this.buffer.substring(0, this.selection.getStartSelection()) + this.buffer.substring(this.selection.getEndSelection());
+		this.selection.resetSelection(this.selection.getStartSelection());
 	}
 
 	/**
 	 */
 	@Override
 	public void coller() {
+		//System.err.println("Texte to paste: [" + this.clipboard + "]");
 		this.insTexte(this.clipboard);
 	}
 
@@ -43,13 +41,12 @@ public class Moteur implements Receiver {
 	 */
 	@Override
 	public void insTexte(String texte) {
-		if(this.selection[0] != this.selection[1])
-			this.buffer = this.buffer.substring(0, this.selection[0]) + texte + this.buffer.substring(this.selection[1]+1);
+		if(this.selection.hasTextSelected())
+			this.buffer = this.buffer.substring(0, this.selection.getStartSelection()) + texte + this.buffer.substring(this.selection.getEndSelection());
 		else
-			this.buffer = this.buffer.substring(0, this.selection[0]) + texte + this.buffer.substring(this.selection[1]);
+			this.buffer = this.buffer.substring(0, this.selection.getStartSelection()) + texte + this.buffer.substring(this.selection.getEndSelection());
 		
-		this.selection[0] += texte.length();
-		this.selection[1] += texte.length();
+		this.selection.moveForward(texte.length());
 		
 	}
 
@@ -59,19 +56,23 @@ public class Moteur implements Receiver {
 	@Override
 	public void selectionner(int[] selection) throws ArrayIndexOutOfBoundsException {
 		
-		if(selection[0] < 0 || selection[1] >= this.buffer.length() || selection[0] > selection[1]) {
+		if(selection[0] < 0 || selection[1] > this.buffer.length() || selection[0] > selection[1]) {
 			throw new ArrayIndexOutOfBoundsException();
 		}
 		
-		this.selection = selection;
+		this.selection.setSelection(selection[0], selection[1]);
 	}
 	
 	@Override
 	public String getBuffer() {
-		return this.buffer;
+		if(this.selection.hasTextSelected()) {
+			return this.buffer.substring(0, this.selection.getStartSelection()) + "\u001B[32m" + this.selection.getSelectedText(buffer) + "\u001B[0m" + this.buffer.substring(this.selection.getEndSelection());
+		}
+		return this.buffer.substring(0, this.selection.getStartSelection()) + "\u001B[32mI\u001B[0m" + this.buffer.substring(this.selection.getEndSelection());
 	}
 	
 	public int[] getSelection(){
-		return this.selection;
+		int[] selection = {this.selection.getStartSelection(), this.selection.getEndSelection()};
+		return selection;
 	}
 }
