@@ -52,7 +52,7 @@ public class TestMoteur {
 		Moteur m = new Moteur();
 		m.insTexte("0123456789");
 		m.selectionner(new int[]{1,10});
-		
+		//assertArrayEquals(expecteds, actuals);
 	}
 	
 	@Test(expected=ArrayIndexOutOfBoundsException.class)

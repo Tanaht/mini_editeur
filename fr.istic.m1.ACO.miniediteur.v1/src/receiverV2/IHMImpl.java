@@ -1,11 +1,11 @@
-package receiver;
+package receiverV2;
 
 import java.util.Scanner;
 
 public class IHMImpl implements IHM {
 	
 	private String texteTapper;
-	private Command copier, couper, coller, insTexte, selectionner;
+	private Command copier, couper, coller, insTexte, selectionner, stopMacro, startMacro, redoMacro;
 	private int[] sel;
 	private Scanner sc;
 	
@@ -16,6 +16,18 @@ public class IHMImpl implements IHM {
 		sel = new int[2];
 		sel[0] = 0; sel[1] = 0;
 		
+	}
+	
+	public void eventStartMacro(){
+		startMacro.execute();
+	}
+	
+	public void eventStopMacro(){
+		stopMacro.execute();
+	}
+	
+	public void eventRedoMacro(){
+		redoMacro.execute();
 	}
 	
 	@Override
@@ -106,6 +118,18 @@ public class IHMImpl implements IHM {
 				}
 				eventColler(); 
 			break;
+			case "::start" : 
+				eventStartMacro(); 
+			break;
+			case "::stop" : 
+				eventStopMacro(); 
+			break;
+			case "::play" : 
+				eventRedoMacro(); 
+			break;
+			case "::help":
+				System.out.println("Liste des commandes: start, stop, play, help, cut, copy, paste, select.");
+				break;
 			case "::end" : 
 				this.sc.close();
 				sc2.close(); 
@@ -149,5 +173,17 @@ public class IHMImpl implements IHM {
 
 	public void setSelectionner(Command selectionner) {
 		this.selectionner = selectionner;
+	}
+	
+	public void setStartMacro(Command startMacro) {
+		this.startMacro = startMacro;
+	}
+	
+	public void setStopMacro(Command stopMacro) {
+		this.stopMacro = stopMacro;
+	}
+	
+	public void setRedoMacro(Command redoMacro) {
+		this.redoMacro = redoMacro;
 	}
 }
