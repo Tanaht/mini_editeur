@@ -120,7 +120,6 @@ public class IHMImpl implements IHM {
 						eventSelectionner();
 					}
 				}
-				this.selectionner.execute();
 				break;
 			default : 
 				this.texteTapper = cmd; 

@@ -7,25 +7,43 @@ import org.junit.Test;
 public class TestMoteur {
 
 	@Test
-	public void testCopier() {
+	public void testCopierVide() {
 		Moteur m = new Moteur();
+		m.insTexte("0123456789");
 		m.copier();
-		//chaine vide est bien vide
-		fail("Not yet implemented");
+		assertTrue(m.getClipboard().length() == 0);
+	}
+	
+	
+	@Test
+	public void testCopierNormal() {
+		Moteur m = new Moteur();
+		m.insTexte("0123456789");
+		m.selectionner(new int[] {0, 2});
+		m.copier();
+		assertTrue(m.getClipboard().equals("01"));
 	}
 	
 	@Test
 	public void testCouper() {
 		Moteur m = new Moteur();
+		m.insTexte("0123");
+		m.selectionner(new int[] {0,1});
 		m.couper();
-		fail("Not yet implemented");
+		m.selectionner(new int[] {3,3});
+		m.coller();
+		assertTrue(m.getBuffer().equals("1230"));
 	}
 	
 	@Test
 	public void testColler() {
 		Moteur m = new Moteur();
+		m.insTexte("0123");
+		m.selectionner(new int[] {0,1});
+		m.copier();
+		m.selectionner(new int[] {4,4});
 		m.coller();
-		fail("Not yet implemented");
+		assertTrue(m.getBuffer().equals("01230"));
 	}
 	
 	@Test
@@ -34,8 +52,7 @@ public class TestMoteur {
 		
 		Moteur m = new Moteur();
 		m.insTexte(txt);
-		
-		assertTrue(txt.length() == m.getBuffer().length());
+		assertTrue(m.getBuffer().equals(txt));
 	}
 	
 	@Test
@@ -47,27 +64,29 @@ public class TestMoteur {
 		
 	}
 	
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
-	public void testselectionnerDebordement() throws ArrayIndexOutOfBoundsException {
+	@Test
+	public void testselectionner2() {
 		Moteur m = new Moteur();
 		m.insTexte("0123456789");
-		m.selectionner(new int[]{1,10});
-		//assertArrayEquals(expecteds, actuals);
+		m.selectionner(new int[]{0,10});
+		m.couper();
+		assertTrue(m.getBuffer().equals(""));
 	}
 	
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
-	public void testselectionnerDebordement2() throws ArrayIndexOutOfBoundsException {
+	@Test
+	public void testselectionnerDebordement2() {
 		Moteur m = new Moteur();
 		m.insTexte("0123456789");
 		m.selectionner(new int[]{-5,5});
+		assertTrue(m.getSelection()[0] == 10 && m.getSelection()[1] == 10 );
 		
 	}
 	
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
-	public void testselectionnerDebordement3() throws ArrayIndexOutOfBoundsException {
+	@Test
+	public void testselectionnerDebordement3() {
 		Moteur m = new Moteur();
 		m.insTexte("0123456789");
 		m.selectionner(new int[]{5,2});
-		
+		assertTrue(m.getSelection()[0] == 10 && m.getSelection()[1] == 10 );
 	}
 }

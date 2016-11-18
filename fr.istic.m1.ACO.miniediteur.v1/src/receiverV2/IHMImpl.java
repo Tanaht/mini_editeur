@@ -46,7 +46,8 @@ public class IHMImpl implements IHM {
 	}
 
 	@Override
-	public void eventInsererTexte() {
+	public void eventInsererTexte(String texte) {
+		this.texteTapper = texte;
 		insTexte.execute();
 	}
 	
@@ -144,11 +145,9 @@ public class IHMImpl implements IHM {
 						eventSelectionner();
 					}
 				}
-				this.selectionner.execute();
 				break;
 			default : 
-				this.texteTapper = cmd; 
-				eventInsererTexte();
+				eventInsererTexte(cmd);
 		}
 		
 		sc2.close();

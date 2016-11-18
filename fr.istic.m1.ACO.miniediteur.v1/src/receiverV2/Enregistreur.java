@@ -44,4 +44,8 @@ public class Enregistreur {
 	public boolean isRecording() {
 		return this.recording;
 	}
+	
+	public boolean isEmpty() {
+		return this.commandes.size() == 0 && this.mementos.size() == 0;
+	}
 }
