@@ -65,6 +65,7 @@ public class IHMImpl implements IHM {
 		Scanner sc2 = new Scanner(cmd);
 		
 		if (!sc2.hasNext()){
+			sc2.close();
 			return true;
 		}
 		

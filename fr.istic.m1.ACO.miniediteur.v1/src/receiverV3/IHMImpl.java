@@ -1,11 +1,12 @@
-package receiverV2;
+package receiverV3;
 
 import java.util.Scanner;
 
 public class IHMImpl implements IHM {
 	
 	private String texteTapper;
-	private Command copier, couper, coller, insTexte, selectionner, stopMacro, startMacro, redoMacro;
+	private Command copier, couper, coller, insTexte, selectionner, stopMacro, startMacro, redoMacro, undo, redo;
+	
 	private int[] sel;
 	private Scanner sc;
 	
@@ -18,14 +19,17 @@ public class IHMImpl implements IHM {
 		
 	}
 	
+	@Override
 	public void eventStartMacro(){
 		startMacro.execute();
 	}
 	
+	@Override
 	public void eventStopMacro(){
 		stopMacro.execute();
 	}
 	
+	@Override
 	public void eventRedoMacro(){
 		redoMacro.execute();
 	}
@@ -54,6 +58,17 @@ public class IHMImpl implements IHM {
 	@Override
 	public void eventSelectionner() {
 		selectionner.execute();
+	}
+	
+	@Override
+	public void eventRedo() {
+		this.redo.execute();
+		
+	}
+
+	@Override
+	public void eventUndo() {
+		this.undo.execute();
 	}
 
 	@Override
@@ -129,8 +144,14 @@ public class IHMImpl implements IHM {
 			case "::play" : 
 				eventRedoMacro(); 
 			break;
+			case "::undo" : 
+				eventUndo(); 
+			break;
+			case "::redo" : 
+				eventRedo(); 
+			break;
 			case "::help":
-				System.out.println("Liste des commandes: start, stop, play, help, cut, copy, paste, select.");
+				System.out.println("Liste des commandes: start, stop, play, help, cut, copy, paste, select, undo, redo.");
 				break;
 			case "::end" : 
 				this.sc.close();
@@ -186,4 +207,13 @@ public class IHMImpl implements IHM {
 	public void setRedoMacro(Command redoMacro) {
 		this.redoMacro = redoMacro;
 	}
+
+	public void setUndo(Command undo) {
+		this.undo = undo;
+	}
+
+	public void setRedo(Command redo) {
+		this.redo = redo;
+	}
+
 }
