@@ -17,8 +17,11 @@ public class Selectionner implements Command {
 	
 	@Override
 	public void execute() {
-		caretaker.addMemento();
-		this.memento = new MementoSelectionner(this.ihm.getSelection());
+		
+		if(!recorder.isPlaying()) {
+			caretaker.addMemento();
+			this.memento = new MementoSelectionner(this.ihm.getSelection());
+		}
 		
 		if(recorder.isRecording())
 			recorder.enregistrer(this);

@@ -14,7 +14,9 @@ public class Copier implements Command {
 	
 	@Override
 	public void execute() {
-		caretaker.addMemento();
+		if(!recorder.isPlaying())
+			caretaker.addMemento();
+		
 		if(recorder.isRecording())
 			recorder.enregistrer(this);
 		receiver.copier();

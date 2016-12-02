@@ -20,8 +20,8 @@ public class Main {
 		Command stopMacro = new StopMacro(recorder);
 		Command redoMacro = new RedoMacro(recorder, caretaker);
 		
-		Command undo = new Undo(caretaker);
-		Command redo = new Redo(caretaker);
+		Command undo = new Undo(caretaker, recorder);
+		Command redo = new Redo(caretaker, recorder);
 		
 		ihm.setUndo(undo);
 		ihm.setRedo(redo);

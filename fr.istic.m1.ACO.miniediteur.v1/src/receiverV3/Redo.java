@@ -3,12 +3,19 @@ package receiverV3;
 public class Redo implements Command {
 
 	private CaretakerMoteur caretaker;
-	public Redo(CaretakerMoteur caretaker) {
+	private Enregistreur recorder;
+	
+	public Redo(CaretakerMoteur caretaker, Enregistreur recorder) {
 		this.caretaker = caretaker;
+		this.recorder = recorder;
 	}
 	
 	@Override
 	public void execute() {
+		
+		if(recorder.isRecording())
+			recorder.enregistrer(this);
+		
 		this.caretaker.redoEvent();
 	}
 

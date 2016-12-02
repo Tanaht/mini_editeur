@@ -45,12 +45,15 @@ public class Moteur implements Receiver {
 	 */
 	@Override
 	public void insTexte(String texte) {
-		if(this.selection.hasTextSelected())
-			this.buffer = this.buffer.substring(0, this.selection.getStartSelection()) + texte + this.buffer.substring(this.selection.getEndSelection());
-		else
-			this.buffer = this.buffer.substring(0, this.selection.getStartSelection()) + texte + this.buffer.substring(this.selection.getEndSelection());
+
+		this.buffer = this.buffer.substring(0, this.selection.getStartSelection()) + texte + this.buffer.substring(this.selection.getEndSelection());
 		
-		this.selection.moveForward(texte.length());
+		if(this.selection.hasTextSelected()) {
+			this.selection.resetSelection(this.selection.getStartSelection() + texte.length());
+		}
+		else {
+			this.selection.moveForward(texte.length());
+		}
 		
 	}
 

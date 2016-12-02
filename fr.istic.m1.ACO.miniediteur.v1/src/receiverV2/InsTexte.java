@@ -15,7 +15,9 @@ public class InsTexte implements Command {
 
 	@Override
 	public void execute() {
-		this.memento = new MementoInserer(this.ihm.getTexte());
+		if(!recorder.isPlaying()) {
+			this.memento = new MementoInserer(this.ihm.getTexte());
+		}
 		
 		if(recorder.isRecording())
 			recorder.enregistrer(this);

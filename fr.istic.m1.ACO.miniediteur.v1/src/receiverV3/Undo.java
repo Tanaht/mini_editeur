@@ -3,12 +3,20 @@ package receiverV3;
 public class Undo implements Command {
 
 	private CaretakerMoteur caretaker;
-	public Undo(CaretakerMoteur caretaker) {
+	private Enregistreur recorder;
+	
+	
+	public Undo(CaretakerMoteur caretaker, Enregistreur recorder) {
 		this.caretaker = caretaker;
+		this.recorder = recorder;
 	}
 	
 	@Override
 	public void execute() {
+		
+		if(recorder.isRecording())
+			recorder.enregistrer(this);
+		
 		this.caretaker.undoEvent();
 	}
 

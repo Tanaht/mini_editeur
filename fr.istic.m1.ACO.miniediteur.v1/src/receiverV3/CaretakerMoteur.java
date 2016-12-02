@@ -28,8 +28,6 @@ public class CaretakerMoteur {
 		if(this.suivants.size() == 0)
 			return;
 		
-		System.out.println("redo occurs");
-		
 		this.precedents.push(moteur.createMemento());
 		moteur.setMemento(this.suivants.pop());
 	}
@@ -37,8 +35,6 @@ public class CaretakerMoteur {
 	public void undoEvent() {
 		if(this.precedents.size() == 0)
 			return;
-		
-		System.out.println("undo occurs");
 		
 		this.suivants.push(moteur.createMemento());
 		moteur.setMemento(this.precedents.pop());

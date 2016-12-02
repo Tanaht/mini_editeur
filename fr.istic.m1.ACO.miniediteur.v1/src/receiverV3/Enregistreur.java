@@ -7,11 +7,14 @@ public class Enregistreur {
 	private List<Command> commandes;
 	private List<Memento> mementos;
 	private boolean recording;
+	private boolean isplaying;
 	
 	public Enregistreur() {
 		this.commandes = new ArrayList<>();
 		this.mementos = new ArrayList<>();
 	}
+	
+	
 	
 	public void enregistrer(Command commande) {
 		this.mementos.add(commande.getMemento());
@@ -20,12 +23,17 @@ public class Enregistreur {
 	
 	public void jouer() {
 		Command commande = null;
-		
+		this.isplaying = true;
 		for(int i = 0 ; i < commandes.size() ; i++) {
 			commande = commandes.get(i);
 			commande.setMemento(mementos.get(i));
 			commande.execute();
 		}
+		this.isplaying = false;
+	}
+	
+	public boolean isPlaying() {
+		return this.isplaying;
 	}
 	
 	public void effacerMacro() {

@@ -14,7 +14,9 @@ public class Couper implements Command {
 	
 	@Override
 	public void execute() {
-		caretaker.addMemento();
+		if(!recorder.isPlaying())
+			caretaker.addMemento();
+		
 		if(recorder.isRecording())
 			recorder.enregistrer(this);
 		receiver.couper();
