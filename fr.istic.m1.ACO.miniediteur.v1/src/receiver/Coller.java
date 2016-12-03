@@ -5,6 +5,9 @@ package receiver;
 **/
 public class Coller implements Command {
 
+	/**
+	 * Référence au receiver qui sera appelé à chaque exécution de la commande
+	 */
 	private Receiver receiver;
 	
 	/**
@@ -13,10 +16,7 @@ public class Coller implements Command {
 	public Coller(Receiver receiver) {
 		this.receiver = receiver;
 	}
-	
-	/**
-	 * Appele la methode coller du moteur
-	**/
+
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub

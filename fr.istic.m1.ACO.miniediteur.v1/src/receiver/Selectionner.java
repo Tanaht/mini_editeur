@@ -1,10 +1,18 @@
 package receiver;
 
 /**
- * La commande Selectionner, sert à selectionner une sous partie du buffer, ou placer le curseur
+ * La commande Selectionner, sert à selectionner une sous partie du buffer, ou positionner le curseur
+ * (Une selection vide correspond à la position du curseur)
 **/
 public class Selectionner implements Command {
+	/**
+	 * Référence au receiver qui sera appelé à chaque exécution de la commande
+	 */
 	private Receiver receiver;
+	
+	/**
+	 * Référence vers l'IHM afin de récupérer la selection de l'utilisateur
+	 */
 	private IHM ihm;
 	
 	/**
@@ -17,9 +25,6 @@ public class Selectionner implements Command {
 		this.ihm = ihm;
 	}
 
-	/**
-	 * Récupère la sélection dans l'IHM et la transfère au moteur
-	**/
 	@Override
 	public void execute() {
 		this.receiver.selectionner(this.ihm.getSelection());

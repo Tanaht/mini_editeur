@@ -5,7 +5,14 @@ package receiver;
 **/
 public class InsTexte implements Command {
 
+	/**
+	 * Référence au receiver qui sera appelé à chaque exécution de la commande
+	 */
 	private Receiver receiver;
+	
+	/**
+	 * Référence vers l'IHM afin de récupérer le texte à insérer
+	 */
 	private IHM ihm;
 	
 	/**
@@ -20,6 +27,7 @@ public class InsTexte implements Command {
 
 	/**
 	 * Récupère le texte dans l'IHM et appelle la methode du moteur avec le texte en paramètre
+	 * @see Receiver.insTexte
 	**/
 	@Override
 	public void execute() {

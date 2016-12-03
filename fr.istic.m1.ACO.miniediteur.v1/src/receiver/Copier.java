@@ -5,6 +5,9 @@ package receiver;
 **/
 public class Copier implements Command {
 
+	/**
+	 * Référence au receiver qui sera appelé à chaque exécution de la commande
+	 */
 	private Receiver receiver;
 	
 	/**
@@ -14,9 +17,6 @@ public class Copier implements Command {
 		this.receiver = receiver;
 	}
 	
-	/**
-	 * Appelle la methode copier du moteur
-	**/
 	@Override
 	public void execute() {
 		receiver.copier();
