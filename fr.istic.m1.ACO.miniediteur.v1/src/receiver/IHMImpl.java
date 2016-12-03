@@ -57,7 +57,8 @@ public class IHMImpl implements IHM {
 	}
 
 	@Override
-	public void eventInsererTexte() {
+	public void eventInsererTexte(String texte) {
+		this.texteTapper = texte;
 		insTexte.execute();
 	}
 	
@@ -95,7 +96,6 @@ public class IHMImpl implements IHM {
 	 */
 	private boolean commandes(String cmd){
 		Scanner sc2 = new Scanner(cmd);
-		
 		if (!sc2.hasNext()){
 			sc2.close();
 			return true;
@@ -155,8 +155,7 @@ public class IHMImpl implements IHM {
 				}
 				break;
 			default : 
-				this.texteTapper = cmd; 
-				eventInsererTexte();
+				eventInsererTexte(cmd);
 		}
 		
 		sc2.close();

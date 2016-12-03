@@ -59,7 +59,6 @@ public class Moteur implements Receiver {
 
 	@Override
 	public void coller() {
-		//System.err.println("Texte to paste: [" + this.clipboard + "]");
 		this.insTexte(this.clipboard);
 	}
 
@@ -88,6 +87,7 @@ public class Moteur implements Receiver {
 		this.selection.setSelection(selection[0], selection[1]);
 	}
 	
+	@Override
 	public String getBuffer() {
 		if(this.selection.hasTextSelected()) {
 			return this.buffer.substring(0, this.selection.getStartSelection()) + this.selection.getSelectedText(buffer) + this.buffer.substring(this.selection.getEndSelection());

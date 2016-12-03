@@ -23,7 +23,7 @@ public class Undo implements Command {
 	@Override
 	public Memento getMemento() {
 		// TODO Auto-generated method stub
-		return new MementoImpl();
+		return null;
 	}
 
 	@Override

@@ -2,9 +2,21 @@ package receiverV2;
 
 public class Coller implements Command {
 
+	/**
+	 * Référence au receiver qui sera appelé à chaque exécution de la commande
+	 */
 	private Receiver receiver;
+	
+	/**
+	 * Référence à l'enregistreur qui joue le rôle de Caretaker pour le design pattern Memento
+	 */
 	private Enregistreur recorder;
 	
+	/**
+	 * Constructeur de la classe Coller
+	 * @param receiver
+	 * @param recorder
+	 */
 	public Coller(Receiver receiver, Enregistreur recorder) {
 		this.receiver = receiver;
 		this.recorder = recorder;

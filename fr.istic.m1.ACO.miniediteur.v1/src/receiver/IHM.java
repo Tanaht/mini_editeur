@@ -24,8 +24,9 @@ public interface IHM {
 	/**
 	 * Méthode qui va exécuter la commande InsTexte
 	 * @link InsTexte
+	 * @param texte le texte à insérer
 	 */
-	void eventInsererTexte();
+	void eventInsererTexte(String texte);
 	/**
 	 * Méthode qui retourne le texte insérer par l'utilisateur
 	 * @see InsTexte.execute

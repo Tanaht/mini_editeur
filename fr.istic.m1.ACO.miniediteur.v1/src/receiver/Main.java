@@ -3,6 +3,10 @@ package receiver;
 
 public class Main {
 	
+	/**
+	 * Point d'entrée du programme, initialise les commandes, le moteur et l'ihm
+	 * @param args
+	 */
 	public static void main(String[] args) {
 	
 		Receiver moteur = new Moteur();
@@ -25,6 +29,11 @@ public class Main {
 
 	}
 	
+	/**
+	 * Fait tourner le moteur
+	 * @param ihm
+	 * @param moteur
+	 */
 	public static void run(IHMImpl ihm, Receiver moteur) {
 		while ( ihm.prompt() ) {
 			System.out.println("Buffer:\n" + moteur.getBuffer() + "\n");
