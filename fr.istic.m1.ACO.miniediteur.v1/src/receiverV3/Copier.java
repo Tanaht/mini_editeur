@@ -2,10 +2,28 @@ package receiverV3;
 
 public class Copier implements Command {
 	
-	private Enregistreur recorder;
+
+	/**
+	 * Référence au receiver qui sera appelé à chaque exécution de la commande
+	 */
 	private Receiver receiver;
+	
+	/**
+	 * Référence à l'enregistreur qui joue le rôle de Caretaker pour le design pattern Memento
+	 */
+	private Enregistreur recorder;
+	
+	/**
+	 * Référence vers le caretaker qui enregistre les états du moteur à chaque commande
+	 */
 	private CaretakerMoteur caretaker;
 	
+	/**
+	 * Constructeur de la classe Copier
+	 * @param receiver
+	 * @param recorder
+	 * @param caretaker
+	 */
 	public Copier(Receiver receiver, Enregistreur recorder, CaretakerMoteur caretaker) {
 		this.receiver = receiver;
 		this.recorder = recorder;

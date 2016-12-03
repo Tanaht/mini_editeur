@@ -93,4 +93,22 @@ public interface IHM {
 	 * @param startMacro une instance de StartMacro
 	 */
 	void setStartMacro(Command startMacro);
+	
+	/**
+	 * Méthode qui démarre l'enregistrement d'une macro
+	 * @see StartMacro.execute
+	 */
+	void eventStartMacro();
+	
+	/**
+	 * Méthode qui stop l'enregistrement d'une macro
+	 * @see StopMacro.execute
+	 */
+	void eventStopMacro();
+	
+	/**
+	 * Méthode qui rejoue une macro
+	 * @see RedoMacro.execute
+	 */
+	void eventRedoMacro();
 }

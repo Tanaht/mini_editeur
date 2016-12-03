@@ -36,14 +36,17 @@ public class IHMImpl implements IHM {
 		
 	}
 	
+	@Override
 	public void eventStartMacro(){
 		startMacro.execute();
 	}
 	
+	@Override
 	public void eventStopMacro(){
 		stopMacro.execute();
 	}
 	
+	@Override
 	public void eventRedoMacro(){
 		redoMacro.execute();
 	}

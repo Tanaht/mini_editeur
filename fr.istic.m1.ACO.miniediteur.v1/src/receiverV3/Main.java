@@ -1,8 +1,11 @@
 package receiverV3;
 
-
 public class Main {
 	
+	/**
+	 * Point d'entrée du programme, initialise les commandes, le moteur, l'enregistruer et l'ihm
+	 * @param args
+	 */
 	public static void main(String[] args) {
 	
 		Enregistreur recorder = new Enregistreur();
@@ -36,7 +39,12 @@ public class Main {
 		Main.run(ihm, moteur);
 
 	}
-	
+
+	/**
+	 * Fait tourner le moteur
+	 * @param ihm
+	 * @param moteur
+	 */
 	public static void run(IHMImpl ihm, Receiver moteur) {
 		while ( ihm.prompt() ) {
 			System.out.println("Buffer:\n" + moteur.getBuffer() + "\n");
