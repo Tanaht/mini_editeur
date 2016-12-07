@@ -35,6 +35,7 @@ public class Main {
 	 * @param moteur
 	 */
 	public static void run(IHMImpl ihm, Receiver moteur) {
+		System.out.println("Auteurs:\n\tAntoine CHARPENTIER\n\tLouis AUDREN\nPour voir la liste des commandes tapez '::help'\nPour fermer tapez '::end'");
 		while ( ihm.prompt() ) {
 			System.out.println("Buffer:\n" + moteur.getBuffer() + "\n");
 		}

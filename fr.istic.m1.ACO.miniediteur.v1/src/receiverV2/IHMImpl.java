@@ -150,7 +150,11 @@ public class IHMImpl implements IHM {
 				eventRedoMacro(); 
 			break;
 			case "::help":
-				System.out.println("Liste des commandes: start, stop, play, help, cut, copy, paste, select.");
+				System.out.println("============================\n"
+						+ "\tToutes les commandes sont préfixées par '::'\n"
+						+ "\tPour insérer du texte, il suffit d'écrire dans le terminal\n"
+						+ "\tListe des commandes: start, stop, play, help, cut, copy, paste, select, end.\n"
+						+ "============================");
 				break;
 			case "::end" : 
 				this.sc.close();

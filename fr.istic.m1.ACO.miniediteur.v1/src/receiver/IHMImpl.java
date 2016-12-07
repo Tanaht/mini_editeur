@@ -124,6 +124,13 @@ public class IHMImpl implements IHM {
 				}
 				eventCouper(); 
 			break;
+			case "::help":
+				System.out.println("============================\n"
+						+ "\tToutes les commandes sont préfixées par '::'\n"
+						+ "\tPour insérer du texte, il suffit d'écrire dans le terminal\n"
+						+ "\tListe des commandes: help, cut, copy, paste, select, end.\n"
+						+ "============================");
+				break;
 			case "::paste" :
 				if(sc2.hasNextInt()) {
 					int sel1 = sc2.nextInt();
