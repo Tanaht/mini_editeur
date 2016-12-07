@@ -113,4 +113,25 @@ public class TestIhm {
 		this.ihm.eventRedo();
 		assertEquals("texte à ctrl+z", this.moteur.getBuffer());
 	}
+	
+	@Test
+	public void testMoteurMemento() {
+		MementoMoteur mementoInit = this.moteur.createMemento();
+		this.ihm.eventInsererTexte("Du texte");
+		MementoMoteur memento2 = this.moteur.createMemento();
+		
+		assertNotEquals(mementoInit, memento2);
+		
+		assertEquals("", mementoInit.getClipboard());
+		assertEquals(mementoInit.getClipboard(), memento2.getClipboard());
+		
+		assertEquals(0, mementoInit.getSelection().getStartSelection());
+		assertEquals(0, mementoInit.getSelection().getEndSelection());
+		
+		assertEquals("Du texte".length(), memento2.getSelection().getStartSelection());
+		assertEquals("Du texte".length(), memento2.getSelection().getEndSelection());
+		
+		assertEquals("", mementoInit.getBuffer());
+		assertEquals("Du texte", memento2.getBuffer());
+	}
 }

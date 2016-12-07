@@ -38,6 +38,7 @@ public class Moteur implements Receiver {
 	public Moteur() {
 		this.selection = new Selection();
 		this.buffer = "";
+		this.clipboard = "";
 	}
 	
 	@Override
