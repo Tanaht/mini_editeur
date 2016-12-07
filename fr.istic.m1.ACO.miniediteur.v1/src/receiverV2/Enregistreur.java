@@ -107,4 +107,20 @@ public class Enregistreur {
 	public boolean isEmpty() {
 		return this.commandes.size() == 0 && this.mementos.size() == 0;
 	}
+	
+	/**
+	 * Attention: méthode inutile pour le mini éditeur, mais nécéssaire pour les tests unitaires
+	 * @return
+	 */
+	public List<Command> getCommandes() {
+		return this.commandes;
+	}
+	
+	/**
+	 * Attention: méthode inutile pour le mini éditeur, mais nécéssaire pour les tests unitaires
+	 * @return
+	 */
+	public List<Memento> getMementos() {
+		return this.mementos;
+	}
 }

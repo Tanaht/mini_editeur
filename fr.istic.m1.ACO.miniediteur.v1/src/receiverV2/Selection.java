@@ -23,8 +23,12 @@ public class Selection {
 	/**
 	 * Augmente la position de la selection en fonction du nombre donnée en paramètre.
 	 * @param step un entier représentant la valeur à ajouter à la position de la selection
+	 * @throws IllegalArgumentException Lève une exception si le paramètre est inférieur ou égale à 0
 	 */
-	public void moveForward(int step) {
+	public void moveForward(int step) throws IllegalArgumentException {
+		if(step <= 0)
+			throw new IllegalArgumentException("Impossible de traiter une valeur négative ou nulle");
+		
 		this.start += step;
 		this.end += step;
 	}
@@ -32,8 +36,11 @@ public class Selection {
 	/**
 	 * Diminue la position de la selection en fonction du nombre donnée en paramètre.
 	 * @param step un entier représentant  la valeur à soustraire à la position de la selection
+	 * @throws IllegalArgumentException Lève une exception si le paramètre est inférieur ou égale à 0, ou supérieur à une des deux valeurs de la selection
 	 */
-	public void moveBackward(int step) {
+	public void moveBackward(int step) throws IllegalArgumentException {
+		if(step <= 0 || step > Math.min(this.start, this.end))
+			throw new IllegalArgumentException();
 		this.start -= step;
 		this.end -= step;
 	}

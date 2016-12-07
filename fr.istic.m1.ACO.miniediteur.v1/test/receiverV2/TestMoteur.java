@@ -1,4 +1,4 @@
-package receiver;
+package receiverV2;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ public class TestMoteur {
 		Moteur m = new Moteur();
 		m.insTexte("0123456789");
 		m.copier();
-		assertTrue(m.getClipboard().length() == 0);
+		assertEquals(0, m.getClipboard().length());
 	}
 	
 	
