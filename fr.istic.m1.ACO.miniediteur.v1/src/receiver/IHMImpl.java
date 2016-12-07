@@ -63,7 +63,8 @@ public class IHMImpl implements IHM {
 	}
 	
 	@Override
-	public void eventSelectionner() {
+	public void eventSelectionner(int[] sel) {
+		this.sel = sel;
 		selectionner.execute();
 	}
 
@@ -107,9 +108,7 @@ public class IHMImpl implements IHM {
 					int sel1 = sc2.nextInt();
 					
 					if(sc2.hasNextInt()) {
-						sel[0] = sel1;
-						sel[1] = sc2.nextInt();
-						eventSelectionner();
+						eventSelectionner(new int[]{ sel1, sc2.nextInt()});
 					}
 				}
 				
@@ -120,9 +119,7 @@ public class IHMImpl implements IHM {
 					int sel1 = sc2.nextInt();
 					
 					if(sc2.hasNextInt()) {
-						sel[0] = sel1;
-						sel[1] = sc2.nextInt();
-						eventSelectionner();
+						eventSelectionner(new int[]{ sel1, sc2.nextInt()});
 					}
 				}
 				eventCouper(); 
@@ -132,9 +129,7 @@ public class IHMImpl implements IHM {
 					int sel1 = sc2.nextInt();
 					
 					if(sc2.hasNextInt()) {
-						sel[0] = sel1;
-						sel[1] = sc2.nextInt();
-						eventSelectionner();
+						eventSelectionner(new int[]{ sel1, sc2.nextInt()});
 					}
 				}
 				eventColler(); 
@@ -148,9 +143,7 @@ public class IHMImpl implements IHM {
 					int sel1 = sc2.nextInt();
 					
 					if(sc2.hasNextInt()) {
-						sel[0] = sel1;
-						sel[1] = sc2.nextInt();
-						eventSelectionner();
+						eventSelectionner(new int[]{ sel1, sc2.nextInt()});
 					}
 				}
 				break;

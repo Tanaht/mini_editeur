@@ -42,9 +42,10 @@ public interface IHM {
 	
 	/**
 	 * Méthode qui va exécuter la commande Selectionner
+	 * @param selection la selection 
 	 * @link Selectionner
 	 */
-	void eventSelectionner();
+	void eventSelectionner(int[] selection);
 	
 	/**
 	 * Setter qui donne la commande Copier à l'IHM
